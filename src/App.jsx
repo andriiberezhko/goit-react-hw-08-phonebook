@@ -1,7 +1,7 @@
 import React from 'react';
-import { Form } from './Form/Form';
-import Filter from './Filter/Filter';
-import ContactList from './ContactList/ContactList';
+import { Form } from './components/Form/Form';
+import Filter from './components/Filter/Filter';
+import ContactList from './components/ContactList/ContactList';
 
 export const App = () => {
   return (
