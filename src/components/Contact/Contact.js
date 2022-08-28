@@ -1,13 +1,20 @@
 import React from 'react';
 import { useDeleteContactsMutation } from 'services/contactsApi';
+import style from './Contact.module.css';
 import PropTypes from 'prop-types';
 
 const Contact = ({ id, name, number }) => {
   const [deleteContact] = useDeleteContactsMutation();
   return (
-    <li>
-      {name}: {number}
-      <button type="button" onClick={() => deleteContact(id)}>
+    <li className={style.item}>
+      <p>
+        <span>{name}</span>: <span className={style.number}>{number}</span>
+      </p>
+      <button
+        type="button"
+        className={style.button}
+        onClick={() => deleteContact(id)}
+      >
         Delete
       </button>
     </li>

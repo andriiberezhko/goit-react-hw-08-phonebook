@@ -1,7 +1,10 @@
 import React from 'react';
 import Contact from 'components/Contact/Contact';
+
 import { useGetContactsQuery } from 'services/contactsApi';
 import { useSelector } from 'react-redux';
+
+import style from './ContactList.module.css';
 
 const ContactList = () => {
   const contacts = useGetContactsQuery().data;
@@ -15,12 +18,17 @@ const ContactList = () => {
     return visibleContacts;
   };
   return (
-    <ul>
-      {contacts &&
-        filteredContacts().map(({ id, name, phone }) => {
-          return <Contact key={id} id={id} name={name} number={phone} />;
-        })}
-    </ul>
+    <section className={style.container}>
+      <h2 className={style.title}>Contacts</h2>
+      <div className={style.wrapperList}>
+        <ul>
+          {contacts &&
+            filteredContacts().map(({ id, name, phone }) => {
+              return <Contact key={id} id={id} name={name} number={phone} />;
+            })}
+        </ul>
+      </div>
+    </section>
   );
 };
 export default ContactList;

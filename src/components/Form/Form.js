@@ -3,6 +3,7 @@ import {
   useGetContactsQuery,
   useAddContactMutation,
 } from 'services/contactsApi';
+import style from './Form.module.css';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -44,8 +45,8 @@ export const Form = () => {
   };
 
   return (
-    <form onSubmit={onSubmitForm}>
-      <label>
+    <form onSubmit={onSubmitForm} className={style.form}>
+      <label className={style.label}>
         Name
         <input
           type="text"
@@ -55,9 +56,10 @@ export const Form = () => {
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
           onChange={onChangeInputName}
+          className={style.formInput}
         />
       </label>
-      <label>
+      <label className={style.label}>
         Number
         <input
           type="tel"
@@ -67,9 +69,12 @@ export const Form = () => {
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
           onChange={onChangeInputNumber}
+          className={style.formInput}
         />
       </label>
-      <button type="submit">Add contact</button>
+      <button type="submit" className={style.addButton}>
+        Add contact
+      </button>
     </form>
   );
 };

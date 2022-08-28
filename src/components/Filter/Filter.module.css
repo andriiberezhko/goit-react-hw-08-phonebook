@@ -1,0 +1,14 @@
+.inputSearch {
+  display: block;
+  width: 95%;
+  border-radius: 25px;
+  border: none;
+  padding: 10px;
+  outline: 0.5px solid rgb(105, 105, 105);
+  margin-top: 10px;
+  font-size: inherit;
+}
+.filterTitle {
+  margin-top: 15px;
+  font-size: inherit;
+}

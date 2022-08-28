@@ -1,0 +1,10 @@
+.container {
+  height: 90vh;
+  /* padding: 20px; */
+  background-color: rgb(244, 244, 244);
+}
+
+.title {
+  text-align: center;
+  margin: 0;
+}
