@@ -1,27 +1,30 @@
 import * as React from 'react';
 import { NavLink } from 'react-router-dom';
-
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useDispatch } from 'react-redux';
+import { authOperations } from 'redux/auth/auth-operations';
 
 const theme = createTheme();
 
 export default function RegisterForm() {
+  const dispatch = useDispatch();
+
   const handleSubmit = event => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
+    const user = {
+      name: data.get('name'),
       email: data.get('email'),
       password: data.get('password'),
-    });
+    };
+    dispatch(authOperations.register(user));
   };
 
   return (
@@ -49,10 +52,10 @@ export default function RegisterForm() {
               <Grid item xs={12}>
                 <TextField
                   autoComplete="given-name"
-                  name="Name"
+                  name="name"
                   required
                   fullWidth
-                  id="Name"
+                  id="name"
                   label="Name"
                   autoFocus
                 />
