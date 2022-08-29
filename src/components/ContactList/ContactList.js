@@ -22,10 +22,13 @@ const ContactList = () => {
       <h2 className={style.title}>Contacts</h2>
       <div className={style.wrapperList}>
         <ul>
-          {contacts &&
+          {contacts ? (
             filteredContacts().map(({ id, name, phone }) => {
               return <Contact key={id} id={id} name={name} number={phone} />;
-            })}
+            })
+          ) : (
+            <p>You don`t have any contacts</p>
+          )}
         </ul>
       </div>
     </section>
