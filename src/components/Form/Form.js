@@ -1,24 +1,19 @@
 import { useState } from 'react';
-// import {
-//   useGetContactsQuery,
-//   useAddContactMutation,
-// } from 'services/contactsApi';
+import {
+  useGetContactsQuery,
+  useAddContactMutation,
+} from 'services/contactsApi';
 import style from './Form.module.css';
-// import { toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-// import contactsSelectors from 'redux/contacts/contacts-selectors';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
-import contactsSelectors from 'redux/contacts/contacts-selectors';
-import { contactsOperations } from 'redux/contacts/contacts-operations';
 
 export const Form = () => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
 
-  const dispatch = useDispatch();
-  const contacts = useSelector(contactsSelectors.getContacts);
-  // console.log(contacts);
+  const contacts = useGetContactsQuery().data;
+
+  const [addContact] = useAddContactMutation();
 
   const onChangeInputName = event => {
     setName(event.currentTarget.value);
@@ -33,20 +28,17 @@ export const Form = () => {
       name,
       number: phone,
     };
-    // console.log(contact);
-    if (
-      !contacts &&
-      contacts.find(item => item.name.toLowerCase() === name.toLowerCase())
-    ) {
-      alert(`Contact ${name} is already exist`);
-      // toast.error(`Contact ${name} is already exist`);
+
+    if (contacts.find(item => item.name.toLowerCase() === name.toLowerCase())) {
+      // alert(`Contact ${name} is already exist`);
+      toast.error(`Contact ${name} is already exist`);
       reset();
       return;
     }
-    dispatch(contactsOperations.addContact(contact));
-    // addContact(contact);
-    alert(`Contact ${name} has been added`);
-    // toast.success(`Contact ${name} has been added`);
+
+    addContact(contact);
+    // alert(`Contact ${name} has been added`);
+    toast.success(`Contact ${name} has been added`);
     reset();
   };
   const reset = () => {

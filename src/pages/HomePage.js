@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import img from '../img/phonebook.png';
 
-export const HomePage = () => {
+const HomePage = () => {
   return (
     <>
       <img src={img} alt="phonebook" height="60%" />
@@ -13,3 +13,5 @@ export const HomePage = () => {
     </>
   );
 };
+
+export default HomePage;

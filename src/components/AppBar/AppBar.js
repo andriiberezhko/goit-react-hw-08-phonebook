@@ -10,6 +10,7 @@ import { authOperations } from 'redux/auth/auth-operations';
 export const AppBar = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+  // console.log('app bar', isLoggedIn);
   const name = useSelector(authSelectors.getUsername);
   // console.log(name);
   return (

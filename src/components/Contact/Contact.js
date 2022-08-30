@@ -1,20 +1,21 @@
 import React from 'react';
-// import { useDeleteContactsMutation } from 'services/contactsApi';
+import { toast } from 'react-toastify';
+import { useDeleteContactsMutation } from 'services/contactsApi';
 import style from './Contact.module.css';
 import PropTypes from 'prop-types';
 
 const Contact = ({ id, name, number }) => {
-  // const [deleteContact] = useDeleteContactsMutation();
+  const [deleteContact] = useDeleteContactsMutation();
+  const handleClick = () => {
+    deleteContact(id);
+    toast.success(`Contact ${name} has been DELETE`);
+  };
   return (
     <li className={style.item}>
       <p>
         <span>{name}</span>: <span className={style.number}>{number}</span>
       </p>
-      <button
-        type="button"
-        className={style.button}
-        // onClick={() => deleteContact(id)}
-      >
+      <button type="button" className={style.button} onClick={handleClick}>
         Delete
       </button>
     </li>
